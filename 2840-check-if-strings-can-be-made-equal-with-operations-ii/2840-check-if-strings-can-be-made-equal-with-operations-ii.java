@@ -4,7 +4,7 @@ class Solution {
         char arr1[]=new char[26];
         char arr2[]=new char[26];
         for(int i=0;i<n;i++){
-            char ch=s2.charAt(i);
+            char ch=s1.charAt(i);
             if(i%2==0){
                 arr2[ch-'a']++;
             }
@@ -13,7 +13,7 @@ class Solution {
             }
         }
         for(int i=0;i<n;i++){
-            char ch=s1.charAt(i);
+            char ch=s2.charAt(i);
             if(i%2==0){
                 if(arr2[ch-'a']<=0){
                     return false;
