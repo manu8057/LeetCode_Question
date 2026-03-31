@@ -1,5 +1,5 @@
 class Solution {
-    public char check(int arr[], int fr[]){
+    public char check(int arr[],int fr[]){
         int max=0;
         int idx=-1;
         for(int i=0;i<26;i++){
