@@ -34,7 +34,6 @@ class Solution {
                 }
             }
             char a=check(arr,fr);
-            System.out.println(a);
             if(a=='#'){
                 q.add('#');
                 ans++;
