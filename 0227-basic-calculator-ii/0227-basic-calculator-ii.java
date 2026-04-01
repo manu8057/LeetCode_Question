@@ -15,10 +15,10 @@ class Solution {
                 else if(sg=='-'){
                     st.push(-num);
                 }
-                else if(sg == '*'){
+                else if(sg=='*'){
                     st.push(st.pop()*num);
                 }
-                else if(sg == '/'){
+                else if(sg=='/'){
                     st.push(st.pop()/num);
                 }
                 sg=ch;
