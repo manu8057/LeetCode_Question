@@ -7,7 +7,6 @@ class Solution {
         int c=n/rows;
         char mat[][]=new char[rows][c];
         int id=0;
-        System.out.println(n);
         for(int i=0;i<rows;i++){
             for(int j=0;j<c;j++){
                 mat[i][j]=ed.charAt(id);
