@@ -21,30 +21,12 @@ class Solution {
         }
         i=r;
         j=c;
-        while(i<n && j<n){
-            if(arr[i][j]==1){
-                return false;
-            }
-            i++;
-            j++;
-        }
-        i=r;
-        j=c;
         while(i>=0 && j<n){
             if(arr[i][j]==1){
                 return false;
             }
             i--;
             j++;
-        }
-        i=r;
-        j=c;
-        while(i<n && j>=0){
-            if(arr[i][j]==1){
-                return false;
-            }
-            i++;
-            j--;
         }
         return true;
     }
