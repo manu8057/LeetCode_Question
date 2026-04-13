@@ -7,6 +7,11 @@ class Solution {
                 pre=max;
                 max=nums[i];
             }
+            else{
+                if(nums[i]>pre){
+                    pre=nums[i];
+                }
+            }
        }
        return (max-1)*(pre-1);
     }
