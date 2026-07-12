@@ -16,7 +16,7 @@ class Solution {
             char c=s.charAt(1);
             int ab=find(a,pr);
             int bb=find(b,pr);
-            if(c=='=' && ab!=bb){
+            if(c=='='){
                 if(fr[ab]>fr[bb]){
                     pr[bb]=pr[ab];
                     fr[ab]+=fr[bb];
@@ -32,7 +32,7 @@ class Solution {
             int b=str.charAt(3)-'a';
             int c=str.charAt(1);
             if(c=='!'){
-                if(pr[a]==pr[b]) return false;
+                if(find(pr[a],pr)==find(pr[b],pr)) return false;
             }
         }
         return true;
