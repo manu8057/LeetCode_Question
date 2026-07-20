@@ -1,5 +1,5 @@
 class Solution {
-    HashMap<String,Integer>map=new HashMap<>();
+    Integer dp[][][];
     public int fun(int n,int id,int f){
         if(n==0){
             if(f==1){
@@ -8,8 +8,8 @@ class Solution {
             return 0;
         }
         if(id==0) return 0;
-        if(map.containsKey(n+")"+id+"t"+f)){
-            return map.get(n+")"+id+"t"+f);
+        if(dp[n][id][f]!=null){
+            return dp[n][id][f];
         }
         int a=1;
         int b=1;
@@ -17,10 +17,10 @@ class Solution {
         if(n-id>=0){
             a=Math.max(a,id*Math.max(fun(n-id,id,1),fun(n-id,id-1,1)));
         }
-        map.put(n+")"+id+"t"+f,a);
-        return a;
+        return dp[n][id][f]=a;
     }
     public int integerBreak(int n) {
+        dp=new Integer[n+1][n+1][2];
         return fun(n,n-1,0);
     }
 }
