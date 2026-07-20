@@ -8,13 +8,16 @@ class Solution {
             return 0;
         }
         if(id==0) return 0;
-        // if(map.contains())
+        if(map.containsKey(n+")"+id+"t"+f)){
+            return map.get(n+")"+id+"t"+f);
+        }
         int a=1;
         int b=1;
         a=Math.max(a,fun(n,id-1,f));
         if(n-id>=0){
             a=Math.max(a,id*Math.max(fun(n-id,id,1),fun(n-id,id-1,1)));
         }
+        map.put(n+")"+id+"t"+f,a);
         return a;
     }
     public int integerBreak(int n) {
