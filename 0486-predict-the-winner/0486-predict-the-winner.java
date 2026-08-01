@@ -1,25 +1,17 @@
 class Solution {
-    HashMap<String,Boolean>map=new HashMap<>();
-    public boolean fun(int i,int n,int nums[],int d,int r,int t){
-        if(i>r){
+    public boolean fun(int i,int j,int n,int nums[],int d,int turn){
+        if(i>j){
             return d>=0;
         }
-        if(map.containsKey(i+"^"+d+"/"+r+"{"+t)){
-            return map.get(i+"^"+d+"/"+r+"{"+t);
-        }
-        if(t==0){
-            boolean ans=fun(i+1,n,nums,d+nums[i],r,1) || fun(i,n,nums,d+nums[r],r-1,1);
-            map.put(i+"^"+d+"/"+r+"{"+t,ans);
-            return ans;
+        if(turn==0){
+            return fun(i+1,j,n,nums,d+nums[i],1) || fun(i,j-1,n,nums,d+nums[j],1);
         }
         else{
-            boolean ans=fun(i+1,n,nums,d-nums[i],r,0) && fun(i,n,nums,d-nums[r],r-1,0);
-            map.put(i+"^"+d+"/"+r+"{"+t,ans);
-            return ans;
+            return fun(i+1,j,n,nums,d-nums[i],0) && fun(i,j-1,n,nums,d-nums[j],0);
         }
     }
-    public boolean predictTheWinner(int[] nums){
+    public boolean predictTheWinner(int[] nums) {
         int n=nums.length;
-        return fun(0,nums.length,nums,0,nums.length-1,0);
+        return fun(0,n-1,n,nums,0,0);
     }
 }
