@@ -1,38 +1,37 @@
 class Solution {
-    public int find(int i,int pr[]){
+    public int find(int pr[],int i){
         if(pr[i]==i){
             return i;
         }
-        return pr[i]=find(pr[i],pr);
+        return pr[i]=find(pr,pr[i]);
     }
     public int makeConnected(int n, int[][] connections) {
-        int tt=connections.length;
-        if(tt<n-1){
+        int pr[]=new int[n];
+        int fr[]=new int[n];
+        if(connections.length<n-1){
             return -1;
         }
-        int pr[]=new int[n];
-        int sz[]=new int[n];
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i+=1){
             pr[i]=i;
-            sz[i]=1;
+            fr[i]=1;
         }
         for(int ar[]:connections){
-            int a=find(ar[0],pr);
-            int b=find(ar[1],pr);
+            int a=find(pr,ar[0]);
+            int b=find(pr,ar[1]);
             if(a!=b){
-                if(sz[a]>sz[b]){
+                if(fr[a]>fr[b]){
+                    fr[a]+=fr[b];
                     pr[b]=pr[a];
-                    sz[a]+=sz[b];
                 }
                 else{
                     pr[a]=pr[b];
-                    sz[b]+=sz[a];
+                    fr[b]+=fr[a];
                 }
             }
         }
         int ans=0;
-        for(int i=0;i<n;i++){
-            if(pr[i]==i){
+        for(int i=0;i<n;i+=1){
+            if(find(pr,i)==i){
                 ans+=1;
             }
         }
