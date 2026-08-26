@@ -1,19 +1,21 @@
 class Solution {
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
         int n=graph.length;
         int fr[]=new int[n];
+        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
         for(int i=0;i<n;i+=1){
             adj.add(new ArrayList<>());
         }
-        for(int i=0;i<n;i++){
-            for(int el:graph[i]){
-                fr[i]++;
-                adj.get(el).add(i);
+        int id=0;
+        for(int ar[]:graph){
+            fr[id]=ar.length;
+            for(int el:ar){
+                adj.get(el).add(id);
             }
+            id++;
         }
         Queue<Integer>q=new LinkedList<>();
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i+=1){
             if(fr[i]==0){
                 q.add(i);
             }
@@ -29,7 +31,7 @@ class Solution {
                 }
             }
         }
-        Collections.sort(l);
-        return l;
+       Collections.sort(l);
+       return l;
     }
 }
