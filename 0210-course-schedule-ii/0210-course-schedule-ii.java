@@ -1,13 +1,17 @@
 class Solution {
-    public int[] findOrder(int n, int[][] arr) {
-        int fr[]=new int[n];
-        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
-        for(int  i=0;i<n;i+=1){
+    public int[] findOrder(int n, int[][] prerequisites) {
+         ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
+        for(int i=0;i<n;i+=1){
             adj.add(new ArrayList<>());
         }
-        for(int ar[]:arr){
-            adj.get(ar[1]).add(ar[0]);
-            fr[ar[0]]++;
+        int fr[]=new int[n];
+        int ans[]=new int[n];
+        int id=0;
+        for(int ar[]:prerequisites){
+            int u=ar[0];
+            int v=ar[1];
+            fr[u]++;
+            adj.get(v).add(u);
         }
         Queue<Integer>q=new LinkedList<>();
         for(int i=0;i<n;i+=1){
@@ -15,20 +19,20 @@ class Solution {
                 q.add(i);
             }
         }
-        int ans[]=new int[n];
-        int c=0;
         while(!q.isEmpty()){
-            int u=q.poll();
-            ans[c]=u;
-            c+=1;
-            for(int el:adj.get(u)){
+            int x=q.poll();
+            ans[id]=x;
+            id+=1;
+            for(int el:adj.get(x)){
                 fr[el]--;
                 if(fr[el]==0){
                     q.add(el);
                 }
             }
         }
-        if(c!=n) return new int[]{};
-        return ans;
+        if(id==n){
+            return ans;
+        }
+        return new int[]{};
     }
 }
