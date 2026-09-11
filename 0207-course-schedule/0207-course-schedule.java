@@ -1,13 +1,15 @@
 class Solution {
-    public boolean canFinish(int n, int[][] arr) {
-        int fr[]=new int[n];
+    public boolean canFinish(int n, int[][] prerequisites) {
         ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
-        for(int  i=0;i<n;i+=1){
+        for(int i=0;i<n;i+=1){
             adj.add(new ArrayList<>());
         }
-        for(int ar[]:arr){
-            adj.get(ar[1]).add(ar[0]);
-            fr[ar[0]]++;
+        int fr[]=new int[n];
+        for(int ar[]:prerequisites){
+            int u=ar[0];
+            int v=ar[1];
+            fr[u]++;
+            adj.get(v).add(u);
         }
         Queue<Integer>q=new LinkedList<>();
         for(int i=0;i<n;i+=1){
@@ -17,9 +19,9 @@ class Solution {
         }
         int c=0;
         while(!q.isEmpty()){
-            int u=q.poll();
+            int x=q.poll();
             c+=1;
-            for(int el:adj.get(u)){
+            for(int el:adj.get(x)){
                 fr[el]--;
                 if(fr[el]==0){
                     q.add(el);
